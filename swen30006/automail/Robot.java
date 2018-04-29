@@ -105,7 +105,7 @@ public class Robot {
                     /** Delivery complete, report this to the simulator! */
                     delivery.deliver(deliveryItem);
                     deliveryCounter++;
-                    if(deliveryCounter > 4){
+                    if(deliveryCounter > tube.MAXIMUM_CAPACITY){
                     	throw new ExcessiveDeliveryException();
                     }
                     /** Check if want to return or if there are more items in the tube*/

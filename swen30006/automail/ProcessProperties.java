@@ -19,6 +19,8 @@ public class ProcessProperties {
 	private static String BIG_BOT = "big";
 	private static boolean weak = false;
 	private static boolean strong = true;
+	private static int STANDARD_TUBE = 4;
+	private static int BIG_TUBE = 6;
 	
 	//Processes seed on both command line and properties file, used to set seedMap in Simulation.java
 	public static HashMap<Boolean, Integer> SeedProp(Properties prop, String[] args) {
@@ -87,29 +89,28 @@ public class ProcessProperties {
 		return i;
 	}
 	
+	//Processes robot type property and returns robot object
 	public static Robot RobotProps(Properties prop, int RobotNum, IMailPool MailPool, IMailDelivery delivery) {
 		String RobotType;
 		if(RobotNum == 1) {
 			RobotType = prop.getProperty("Robot_Type_1");
-			System.out.println(RobotType);
 		}
 		else {
 			RobotType = prop.getProperty("Robot_Type_2");
-			System.out.println(RobotType);
 		}
 		
 		if(RobotType.equals(WEAK_BOT)) {
 			IRobotBehaviour robotBehaviourW = new MyRobotBehaviour(weak);
-			return new WeakRobot(robotBehaviourW, delivery, MailPool, weak,10);
+			return new WeakRobot(robotBehaviourW, delivery, MailPool, weak,STANDARD_TUBE);
 			
 		}
 		else if(RobotType.equals(STRONG_BOT)) {
 			IRobotBehaviour robotBehaviourS = new MyRobotBehaviour(strong);
-			return new StrongRobot(robotBehaviourS, delivery, MailPool, strong,10);
+			return new StrongRobot(robotBehaviourS, delivery, MailPool, strong,STANDARD_TUBE);
 		}
 		else if(RobotType.equals(BIG_BOT)){
-			System.out.println("ISSUE");
-			return null;
+			IRobotBehaviour robotBehaviourS = new MyRobotBehaviour(strong);
+			return new StrongRobot(robotBehaviourS, delivery, MailPool, strong,BIG_TUBE);
 		}
 		else {
 			System.out.println("Invalid Robot configuration");

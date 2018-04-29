@@ -17,7 +17,7 @@ public class Clock {
     	Time++;
     }
 
-    
+    //set for last delivery time
     public static void setDeliveryTime(int DeliveryTime) {
     	LAST_DELIVERY_TIME = DeliveryTime;
     }

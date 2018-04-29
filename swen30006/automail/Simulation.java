@@ -50,14 +50,6 @@ public class Simulation {
 		
 
 		
-		
-		Enumeration<?> a = automailProperties.propertyNames();
-		while (a.hasMoreElements()) {
-			String key = (String) a.nextElement();
-			String value = automailProperties.getProperty(key);
-			System.out.println("Key : " + key + ", Value : " + value);
-		}
-		
         /** Used to see whether a seed is initialized or not */
 		HashMap<Boolean, Integer> seedMap = new HashMap<>();
 		
