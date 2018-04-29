@@ -6,6 +6,7 @@ import automail.Robot.RobotState;
 import automail.StorageTube;
 import exceptions.ItemTooHeavyException;
 
+
 public interface IRobotBehaviour {
 	
 	/**

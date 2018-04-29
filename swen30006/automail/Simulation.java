@@ -5,12 +5,15 @@ import exceptions.ItemTooHeavyException;
 import exceptions.MailAlreadyDeliveredException;
 import strategies.Automail;
 
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+
 import java.util.Enumeration;
+
 
 /**
  * This class simulates the behaviour of AutoMail
@@ -18,20 +21,18 @@ import java.util.Enumeration;
 public class Simulation {
 
     /** Constant for the mail generator */
+
     private static int MAIL_TO_CREATE;
     private static double PENALTY;
+
 
     private static ArrayList<MailItem> MAIL_DELIVERED;
     private static double total_score = 0;
 
-    public static void main(String[] args) throws IOException {
-    	
-    
+
+    public static void main(String[] args) throws IOException { 
     	// Should probably be using properties here
     	Properties automailProperties = new Properties();
-
-
-    	
 		// Defaults
 		automailProperties.setProperty("Name_of_Property", "20");  // Property value may need to be converted from a string to the appropriate type
 
@@ -40,16 +41,14 @@ public class Simulation {
 		try {
 			inStream = new FileReader("automail.properties");
 			automailProperties.load(inStream);
-			
-			
-			
-			
+
 		} finally {
 			 if (inStream != null) {
 	                inStream.close();
 	            }
 		}
 		
+
 		
 		
 		Enumeration<?> a = automailProperties.propertyNames();
@@ -76,6 +75,7 @@ public class Simulation {
         /** Read the first argument and save it as a seed if it exists */
         
         Automail automail = new Automail(new ReportDelivery(), automailProperties);
+
         MailGenerator generator = new MailGenerator(MAIL_TO_CREATE, automail.mailPool, seedMap);
         
         /** Initiate all the mail */
@@ -89,8 +89,10 @@ public class Simulation {
             	automail.robot2.behaviour.priorityArrival(priority.getPriorityLevel(), priority.weight);
             }
             try {
-				automail.robot1.delivery.step(automail.robot1);
-				automail.robot2.delivery.step(automail.robot2);
+
+				automail.robot1.step();
+				automail.robot2.step();
+
 			} catch (ExcessiveDeliveryException|ItemTooHeavyException e) {
 				e.printStackTrace();
 				System.out.println("Simulation unable to complete.");
@@ -124,13 +126,14 @@ public class Simulation {
     
     private static double calculateDeliveryScore(MailItem deliveryItem) {
     	// Penalty for longer delivery times
-//    	final double penalty = 1.1;
+
     	double priority_weight = 0;
         // Take (delivery time - arrivalTime)**penalty * (1+sqrt(priority_weight))
     	if(deliveryItem instanceof PriorityMailItem){
     		priority_weight = ((PriorityMailItem) deliveryItem).getPriorityLevel();
     	}
         return Math.pow(Clock.Time() - deliveryItem.getArrivalTime(),PENALTY)*(1+Math.sqrt(priority_weight));
+
     }
 
     public static void printResults(){

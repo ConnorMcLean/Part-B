@@ -14,7 +14,9 @@ public class MailItem {
     /** The time the mail item arrived */
     protected final int arrival_time;
     /** The weight in grams of the mail item */
+
     public final int weight;
+
 
     /**
      * Constructor for a MailItem

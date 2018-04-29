@@ -5,15 +5,17 @@ public class Building {
 	
     /** The number of floors in the building **/
     private static int FLOORS;
+
     
     /** Represents the ground floor location */
     public static  int LOWEST_FLOOR = 1;
     
     /** Represents the mailroom location */
     private static  int MAILROOM_LOCATION = 1;
+
     
 public Building() {
-	//commit test
+
     	
     }
     public Building(int Floor, int Mailroom_Location) {
@@ -30,5 +32,5 @@ public Building() {
     public static void setFloor(int FloorCount) {
     	FLOORS = FloorCount;
     }
-    
+
 }

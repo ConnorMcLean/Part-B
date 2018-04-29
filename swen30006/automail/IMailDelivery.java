@@ -4,16 +4,22 @@ import automail.Robot.RobotState;
 import exceptions.ExcessiveDeliveryException;
 import exceptions.ItemTooHeavyException;
 
+
 /**
  * a MailDelivery is used by the Robot to deliver mail once it has arrived at the correct location
  */
 public interface IMailDelivery {
 
+
 /**
+
+	/**
+
      * Delivers an item at its floor
      * @param mailItem the mail item being delivered.
      */
 	void deliver(MailItem mailItem);
+
 
 	/**
 	 * This is called on every time step
@@ -90,6 +96,5 @@ public interface IMailDelivery {
 				}
 	            break;
 		}
-	}
-    
+	}   
 }

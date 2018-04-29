@@ -14,9 +14,11 @@ public class MailGenerator {
 
     private int mailCreated;
 
-    final Random random;
+
+    private final Random random;
     /** This seed is used to make the behaviour deterministic */
-    public RandomGenerator RandomGenerator;
+    
+
     private boolean complete;
     private IMailPool mailPool;
 
@@ -48,15 +50,17 @@ public class MailGenerator {
      * @return a new mail item that needs to be delivered
      */
     private MailItem generateMail(){
-      RandomGenerator RandomGenerator = new RandomGenerator(this.random);
-       int dest_floor = RandomGenerator.randomDestinationFloor;
-       int priority_level = RandomGenerator.randomPriorityLevel;
-       int arrival_time = RandomGenerator.randomTimeArrival;
-       int weight = RandomGenerator.randomWeight;
-       // int dest_floor = generateDestinationFloor();
-       // int priority_level = generatePriorityLevel();
-        //int arrival_time = generateArrivalTime();
-        //int weight = generateWeight();
+
+    	RandomGenerator RandomGenerator = new RandomGenerator(this.random);
+        int dest_floor = RandomGenerator.randomDestinationFloor;
+        int priority_level = RandomGenerator.randomPriorityLevel;
+        int arrival_time = RandomGenerator.randomTimeArrival;
+        int weight = RandomGenerator.randomWeight;
+        // int dest_floor = generateDestinationFloor();
+        // int priority_level = generatePriorityLevel();
+         //int arrival_time = generateArrivalTime();
+         //int weight = generateWeight();
+
         // Check if arrival time has a priority mail
         if(	(random.nextInt(6) > 0) ||  // Skew towards non priority mail
         	(allMail.containsKey(arrival_time) &&
@@ -72,8 +76,7 @@ public class MailGenerator {
      * @return a destination floor between the ranges of GROUND_FLOOR to FLOOR
      */
     private int generateDestinationFloor(){
-        return Building.getBuildingFloor() + random.nextInt(Building.getBuildingFloor());
-    	
+        return Building.LOWEST_FLOOR + random.nextInt(Building.getBuildingFloor());
     }
 
     /**
@@ -82,6 +85,12 @@ public class MailGenerator {
     private int generatePriorityLevel(){
         return random.nextInt(4) > 0 ? 10 : 100;
     }
+
+    
+    /**
+     * @return a random weight
+     */
+    
     private int generateWeight(){
     	final double mean = 200.0; // grams for normal item
     	final double stddev = 700.0; // grams
@@ -90,6 +99,7 @@ public class MailGenerator {
     	int weight = (int) (mean + base * stddev);
         return weight > 5000 ? 5000 : weight;
     }
+
     /**
      * @return a random arrival time before the last delivery time
      */
@@ -104,7 +114,7 @@ public class MailGenerator {
     private Object getRandom(Object[] array){
         return array[random.nextInt(array.length)];
     }
-    
+
     /**
      * This class initializes all mail and sets their corresponding values,
      */
