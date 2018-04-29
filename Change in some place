@@ -1,0 +1,8 @@
+In step method of robot in thecDELIVERING case
+change  
+ if(robot.deliveryCounter > 4)
+ to
+if(robot.deliveryCounter > robot.tube.MAXIMUM_CAPACITY)
+
+Second, change Building.FLOORS to Building.getBuildingFloor();
+and Building.MAILROOM_LOCATION to Building.getMailroom_Location();
