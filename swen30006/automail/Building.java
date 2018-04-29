@@ -13,7 +13,7 @@ public class Building {
     private static  int MAILROOM_LOCATION = 1;
     
 public Building() {
-	
+	//commit test
     	
     }
     public Building(int Floor, int Mailroom_Location) {
