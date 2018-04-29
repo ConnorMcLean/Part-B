@@ -4,7 +4,7 @@ public class Building {
 	
 	
     /** The number of floors in the building **/
-    private static  int FLOORS = 14;
+    private static int FLOORS;
     
     /** Represents the ground floor location */
     public static  int LOWEST_FLOOR = 1;
@@ -26,4 +26,9 @@ public Building() {
     public static int getMailroom_Location() {
     	return MAILROOM_LOCATION;
     }
+    
+    public static void setFloor(int FloorCount) {
+    	FLOORS = FloorCount;
+    }
+    
 }

@@ -6,7 +6,7 @@ public class Clock {
     private static int Time = 0;
     
     /** The threshold for the latest time for mail to arrive **/
-    public static final int LAST_DELIVERY_TIME = 300;
+    public static int LAST_DELIVERY_TIME;
 
     public static int Time() {
     	return Time;
@@ -14,5 +14,9 @@ public class Clock {
     
     public static void Tick() {
     	Time++;
+    }
+    
+    public static void setDeliveryTime(int DeliveryTime) {
+    	LAST_DELIVERY_TIME = DeliveryTime;
     }
 }
